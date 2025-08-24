@@ -1,17 +1,25 @@
 "use client";
 
+import Link from "next/link";
+import Image from "next/image";
 import { Environment } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Fox } from "@/components/Fox";
 import React from "react";
 import * as THREE from "three";
+import Footer from "@/components/footer";
+import Header from "@/components/header";
+
+// Persist across client-side navigations; resets only on hard refresh
+let hasIntroPlayed = false;
 
 type MovementPhase = "runIn" | "survey" | "walkOut" | "done";
 
-const FoxActor: React.FC = () => {
+const FoxActor: React.FC<{ onDone?: () => void }> = ({ onDone }) => {
   const actorRef = React.useRef<THREE.Group>(null);
   const [phase, setPhase] = React.useState<MovementPhase>("runIn");
   const [currentAnimationName, setCurrentAnimationName] = React.useState<string>("Run");
+  const hasCalledOnDoneRef = React.useRef<boolean>(false);
 
   const startX = -5; // further left to avoid initial visibility
   const startY = -0.5;
@@ -32,6 +40,13 @@ const FoxActor: React.FC = () => {
     if (phase === "survey") setCurrentAnimationName("Survey");
     if (phase === "walkOut") setCurrentAnimationName("Walk");
   }, [phase]);
+
+  React.useEffect(() => {
+    if (phase !== "done") return;
+    if (hasCalledOnDoneRef.current) return;
+    hasCalledOnDoneRef.current = true;
+    onDone?.();
+  }, [phase, onDone]);
 
   React.useEffect(() => {
     if (phase !== "survey") return;
@@ -66,13 +81,36 @@ const FoxActor: React.FC = () => {
   );
 };
 
+
+
 export default function Home() {
+  const [introFinished, setIntroFinished] = React.useState<boolean>(hasIntroPlayed);
   return (
     <div className="h-[100vh] w-[100vw] relative">
       <Canvas camera={{ position: [0.6, 0.9, 5.2], fov: 50 }}>
         <Environment preset="studio"/>
-        <FoxActor />
+        {!introFinished && (
+          <FoxActor onDone={() => { setIntroFinished(true); hasIntroPlayed = true; }} />
+        )}
       </Canvas>
+      <div
+        className={`pointer-events-auto absolute inset-0 flex items-center justify-center transition-opacity duration-700 ${introFinished ? 'opacity-100' : 'opacity-0'}`}
+        aria-live="polite"
+      >
+        <div className="text-center absolute top-12 left-1/2 transform -translate-x-1/2">
+            <Header />
+          <div className="flex flex-col items-center gap-4 mt-16">
+            <Image src="/tyler_headshot.jpeg" alt="tyler chen" width={100} height={100} className="rounded-full"/>
+            <div className="text-center">
+              <h1 className="text-2xl font-semibold text-gray-900 mb-2">Tyler Chen</h1>
+              <p className="text-gray-600">prev CTO & Cofounder @ Caucus (YC X25).</p>
+            </div>
+          </div>
+        </div>
+        <div className="text-center absolute bottom-12 left-1/2 transform -translate-x-1/2">
+          <Footer />
+        </div>
+      </div>
     </div>
   );
 }
