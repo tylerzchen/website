@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { Environment } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
@@ -82,7 +81,6 @@ const FoxActor: React.FC<{ onDone?: () => void }> = ({ onDone }) => {
 };
 
 
-
 export default function Home() {
   const [introFinished, setIntroFinished] = React.useState<boolean>(hasIntroPlayed);
   return (
@@ -93,17 +91,32 @@ export default function Home() {
           <FoxActor onDone={() => { setIntroFinished(true); hasIntroPlayed = true; }} />
         )}
       </Canvas>
+      {!introFinished && (
+        <div className="pointer-events-auto absolute top-4 right-4 z-10">
+          <button
+            onClick={() => { setIntroFinished(true); hasIntroPlayed = true; }}
+            className="rounded-full border border-gray-300 bg-white/70 px-3 py-1 text-sm text-gray-700 backdrop-blur hover:bg-white transition"
+            aria-label="Skip intro"
+          >
+            skip
+          </button>
+        </div>
+      )}
       <div
         className={`pointer-events-auto absolute inset-0 flex items-center justify-center transition-opacity duration-700 ${introFinished ? 'opacity-100' : 'opacity-0'}`}
         aria-live="polite"
       >
         <div className="text-center absolute top-12 left-1/2 transform -translate-x-1/2">
             <Header />
-          <div className="flex flex-col items-center gap-4 mt-16">
-            <Image src="/tyler_headshot.jpeg" alt="tyler chen" width={100} height={100} className="rounded-full"/>
+          <div className="flex flex-col items-center gap-5 md:gap-6 mt-14 md:mt-16">
+            <Image src="/tyler_headshot.jpeg" alt="Tyler Chen" width={160} height={160} className="h-20 w-20 md:h-24 md:w-24 rounded-full ring-1 ring-black/5 shadow-sm" priority />
             <div className="text-center">
-              <h1 className="text-2xl font-semibold text-gray-900 mb-2">Tyler Chen</h1>
-              <p className="text-gray-600">prev CTO & Cofounder @ Caucus (YC X25).</p>
+              <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900">Tyler Chen</h1>
+              <p className="mt-3 max-w-2xl mx-auto text-base md:text-lg leading-relaxed text-gray-700">
+                Building pragmatic, scalable software. Previously CTO & cofounder at Caucus (YC X25).
+                Studying Physics & Computer Science at Yale. Also sometimes play jazz piano and
+                stay active. Love to cook and hike.
+              </p>
             </div>
           </div>
         </div>

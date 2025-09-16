@@ -1,17 +1,37 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
-    return(
-        <div className="flex flex-row gap-4 justify-center">
-            <Link href="/">
-                <h1 className="text-2xl md:text-4xl italic underline text-gray-900">home</h1>
-            </Link>
-            <Link href="/about">
-                <h1 className="text-2xl md:text-4xl italic underline text-gray-900">about</h1>
-        </Link>
-            <Link href="/essays">
-                <h1 className="text-2xl md:text-4xl italic underline text-gray-900">essays</h1>
-            </Link>
-        </div>
-    )
+    const pathname = usePathname();
+    const links = [
+        { href: "/", label: "home" },
+        { href: "/about", label: "about" },
+        { href: "/essays", label: "essays" },
+    ];
+
+    return (
+        <nav aria-label="Primary" className="flex justify-center">
+            <ul className="flex items-center gap-6 md:gap-10">
+                {links.map(({ href, label }) => {
+                    const isActive = pathname === href;
+                    return (
+                        <li key={href}>
+                            <Link
+                                href={href}
+                                className={`text-xl md:text-3xl transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300 rounded-sm ${
+                                    isActive
+                                        ? "font-semibold text-gray-900 underline underline-offset-4"
+                                        : "text-gray-900/80 hover:opacity-70 hover:underline hover:underline-offset-4"
+                                }`}
+                            >
+                                {label}
+                            </Link>
+                        </li>
+                    );
+                })}
+            </ul>
+        </nav>
+    );
 }
