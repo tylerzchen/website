@@ -84,32 +84,49 @@ const FoxActor: React.FC<{ onDone?: () => void }> = ({ onDone }) => {
 export default function Home() {
   const [introFinished, setIntroFinished] = React.useState<boolean>(hasIntroPlayed);
   return (
-    <div className="h-[100vh] w-[100vw] relative">
-      <div className="absolute inset-0 flex flex-col items-center">
-        <div className="text-center mt-12">
-          <Header />
-          <div className="flex flex-col items-center gap-5 md:gap-6 mt-14 md:mt-16">
-            <Image src="/tyler_headshot.jpeg" alt="Tyler Chen" width={160} height={160} className="h-20 w-20 md:h-24 md:w-24 rounded-full ring-1 ring-black/5 shadow-sm" priority />
-            <div className="text-center">
-              <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900">Tyler Chen</h1>
-              <p className="mt-3 max-w-2xl mx-auto text-base md:text-lg leading-relaxed text-gray-700">
-                Building pragmatic, scalable software. Previously CTO & cofounder at Caucus (YC X25).
-                Studying Physics & Computer Science at Yale. Also sometimes play jazz piano and
-                stay active. Love to cook and hike.
-              </p>
-            </div>
-          </div>
+    <div className="min-h-screen w-full relative overflow-x-hidden">
+      <Header />
+      <div className="w-full flex flex-col items-center">
+        <div className="w-full">
+          <main className="max-w-3xl mx-auto px-6 pt-24 md:pt-28">
+            <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900 text-left">Tyler Chen</h1>
+            {/*
+            <Image
+              src="/tyler_headshot.jpeg"
+              alt="Tyler Chen"
+              width={160}
+              height={160}
+              className="mt-6 h-20 w-20 md:h-24 md:w-24 rounded-full ring-1 ring-black/5 shadow-sm"
+              priority
+            />
+            */}
+            <p className="mt-4 text-base md:text-lg leading-relaxed text-gray-700 text-left">
+              Building pragmatic, scalable software. Previously CTO & cofounder at Caucus (YC X25).
+              Studying Physics & Computer Science at Yale. Also sometimes play jazz piano and
+              stay active. Love to cook and hike.
+            </p>
+            {introFinished && (
+              <figure className="mt-10 mb-10 flex flex-col items-center">
+                <Image
+                  src="/mydog.jpg"
+                  alt="My Dog"
+                  width={320}
+                  height={320}
+                  priority
+                />
+                <figcaption className="mt-2 text-sm text-gray-600">a photo of my dog Rose</figcaption>
+              </figure>
+            )}
+          </main>
         </div>
 
-        {/* Animation strip: full-width canvas between text and footer */}
-        <div className="w-screen h-40 md:h-48 lg:h-56 relative mt-8 mb-8 pointer-events-none">
-          <Canvas camera={{ position: [0, 0, 8], fov: 15 }}>
-            <Environment preset="studio"/>
-            {!introFinished && (
+        {/* Animation strip: show only during intro */}
+        {!introFinished && (
+          <div className="w-full h-40 md:h-48 lg:h-56 relative mt-6 mb-8 pointer-events-none">
+            <Canvas camera={{ position: [0, 0, 8], fov: 15 }}>
+              <Environment preset="studio"/>
               <FoxActor onDone={() => { setIntroFinished(true); hasIntroPlayed = true; }} />
-            )}
-          </Canvas>
-          {!introFinished && (
+            </Canvas>
             <div className="pointer-events-auto absolute top-2 right-4 z-10">
               <button
                 onClick={() => { setIntroFinished(true); hasIntroPlayed = true; }}
@@ -119,8 +136,8 @@ export default function Home() {
                 skip
               </button>
             </div>
-          )}
-        </div>
+          </div>
+        )}
 
         <div className="text-center mt-auto mb-12">
           <Footer />

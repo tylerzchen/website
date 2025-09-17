@@ -12,18 +12,19 @@ export default function Header() {
     ];
 
     return (
-        <nav aria-label="Primary" className="flex justify-center">
-            <ul className="flex items-center gap-6 md:gap-10">
+        <nav aria-label="Primary" className="fixed top-4 left-4 md:top-6 md:left-8 z-50">
+            <ul className="flex items-center gap-4 md:gap-5">
                 {links.map(({ href, label }) => {
                     const isActive = pathname === href;
                     return (
                         <li key={href}>
                             <Link
                                 href={href}
-                                className={`text-xl md:text-3xl transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300 rounded-sm ${
+                                aria-current={isActive ? 'page' : undefined}
+                                className={`text-sm md:text-base tracking-tight transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300 rounded ${
                                     isActive
-                                        ? "font-semibold text-gray-900 underline underline-offset-4"
-                                        : "text-gray-900/80 hover:opacity-70 hover:underline hover:underline-offset-4"
+                                        ? "text-gray-900 font-medium"
+                                        : "text-gray-700 hover:text-gray-900"
                                 }`}
                             >
                                 {label}
