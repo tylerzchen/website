@@ -20,12 +20,12 @@ const FoxActor: React.FC<{ onDone?: () => void }> = ({ onDone }) => {
   const [currentAnimationName, setCurrentAnimationName] = React.useState<string>("Run");
   const hasCalledOnDoneRef = React.useRef<boolean>(false);
 
-  const startX = -5; // further left to avoid initial visibility
-  const startY = -0.5;
+  const startX = -10; // further left to avoid initial visibility
+  const startY = -1;
   const centerStopX = 0.0; // stop near true center
-  const endX = 5.2; // a bit further right before reset
-  const runSpeedUnitsPerSecond = 2.6;
-  const walkSpeedUnitsPerSecond = 1.15;
+  const endX = 9; // a bit further right before reset
+  const runSpeedUnitsPerSecond = 3;
+  const walkSpeedUnitsPerSecond = 1.5;
   const surveyDurationMs = 3500;
 
   React.useEffect(() => {
@@ -85,29 +85,9 @@ export default function Home() {
   const [introFinished, setIntroFinished] = React.useState<boolean>(hasIntroPlayed);
   return (
     <div className="h-[100vh] w-[100vw] relative">
-      <Canvas camera={{ position: [0.6, 0.9, 5.2], fov: 50 }}>
-        <Environment preset="studio"/>
-        {!introFinished && (
-          <FoxActor onDone={() => { setIntroFinished(true); hasIntroPlayed = true; }} />
-        )}
-      </Canvas>
-      {!introFinished && (
-        <div className="pointer-events-auto absolute top-4 right-4 z-10">
-          <button
-            onClick={() => { setIntroFinished(true); hasIntroPlayed = true; }}
-            className="rounded-full border border-gray-300 bg-white/70 px-3 py-1 text-sm text-gray-700 backdrop-blur hover:bg-white transition"
-            aria-label="Skip intro"
-          >
-            skip
-          </button>
-        </div>
-      )}
-      <div
-        className={`pointer-events-auto absolute inset-0 flex items-center justify-center transition-opacity duration-700 ${introFinished ? 'opacity-100' : 'opacity-0'}`}
-        aria-live="polite"
-      >
-        <div className="text-center absolute top-12 left-1/2 transform -translate-x-1/2">
-            <Header />
+      <div className="absolute inset-0 flex flex-col items-center">
+        <div className="text-center mt-12">
+          <Header />
           <div className="flex flex-col items-center gap-5 md:gap-6 mt-14 md:mt-16">
             <Image src="/tyler_headshot.jpeg" alt="Tyler Chen" width={160} height={160} className="h-20 w-20 md:h-24 md:w-24 rounded-full ring-1 ring-black/5 shadow-sm" priority />
             <div className="text-center">
@@ -120,7 +100,29 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="text-center absolute bottom-12 left-1/2 transform -translate-x-1/2">
+
+        {/* Animation strip: full-width canvas between text and footer */}
+        <div className="w-screen h-40 md:h-48 lg:h-56 relative mt-8 mb-8 pointer-events-none">
+          <Canvas camera={{ position: [0, 0, 8], fov: 15 }}>
+            <Environment preset="studio"/>
+            {!introFinished && (
+              <FoxActor onDone={() => { setIntroFinished(true); hasIntroPlayed = true; }} />
+            )}
+          </Canvas>
+          {!introFinished && (
+            <div className="pointer-events-auto absolute top-2 right-4 z-10">
+              <button
+                onClick={() => { setIntroFinished(true); hasIntroPlayed = true; }}
+                className="rounded-full border border-gray-300 bg-white/70 px-3 py-1 text-sm text-gray-700 backdrop-blur hover:bg-white transition"
+                aria-label="Skip intro"
+              >
+                skip
+              </button>
+            </div>
+          )}
+        </div>
+
+        <div className="text-center mt-auto mb-12">
           <Footer />
         </div>
       </div>
