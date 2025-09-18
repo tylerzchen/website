@@ -1,13 +1,9 @@
 import Image from "next/image";
-import Footer from "@/components/footer";
-import Header from "@/components/header";
 
 export default function About() {
     return (
         <div className="min-h-screen relative">
-            <Header />
-
-            <main className="max-w-3xl mx-auto px-6 pt-24 md:pt-28 pb-32">
+            <main className="max-w-3xl mx-auto px-6 pt-20 md:pt-24 pb-32">
                 {/*<h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900 text-left">About</h1>*/}
                 <section className="space-y-10 mt-8">
                     <div>
@@ -78,10 +74,7 @@ export default function About() {
                     </div>
                 </section>
             </main>
-
-            <div className="text-center absolute bottom-12 left-1/2 transform -translate-x-1/2">
-                <Footer />
-            </div>
+            
         </div>
     )
 }

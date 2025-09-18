@@ -6,8 +6,6 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Fox } from "@/components/Fox";
 import React from "react";
 import * as THREE from "three";
-import Footer from "@/components/footer";
-import Header from "@/components/header";
 
 // Persist across client-side navigations; resets only on hard refresh
 let hasIntroPlayed = false;
@@ -85,10 +83,9 @@ export default function Home() {
   const [introFinished, setIntroFinished] = React.useState<boolean>(hasIntroPlayed);
   return (
     <div className="min-h-screen w-full relative overflow-x-hidden">
-      <Header />
       <div className="w-full flex flex-col items-center">
         <div className="w-full">
-          <main className="max-w-3xl mx-auto px-6 pt-24 md:pt-28">
+          <main className="max-w-3xl mx-auto px-6 pt-20 md:pt-24">
             <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900 text-left">Tyler Chen</h1>
             {/*
             <Image
@@ -139,9 +136,7 @@ export default function Home() {
           </div>
         )}
 
-        <div className="text-center mt-auto mb-12">
-          <Footer />
-        </div>
+        
       </div>
     </div>
   );
