@@ -98,9 +98,11 @@ export default function Home() {
             />
             */}
             <p className="mt-4 text-base md:text-lg leading-relaxed text-gray-700 text-left">
-              Building pragmatic, scalable software. Previously CTO & cofounder at Caucus (YC X25).
-              Studying Physics & Computer Science at Yale. Also sometimes play jazz piano and
-              stay active. Love to cook and hike.
+              I&apos;m a Physics & CS student at Yale. Previously, I was CTO & Cofounder at Caucus (YC X25) where I tackled automating highly repetitive government workflows related to constituent services and form filing. I&apos;m most interested in 
+              building pragmatic, scalable software to maximize positive impact.
+            </p>
+            <p className="mt-4 text-base md:text-lg leading-relaxed text-gray-700 text-left">
+              I also play jazz piano and stay active. I love to cook, hike, and spend time with friends (and my dog).
             </p>
             {introFinished && (
               <figure className="mt-10 mb-10 flex flex-col items-center">
