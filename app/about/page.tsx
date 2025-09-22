@@ -97,6 +97,25 @@ export default function About() {
                                     </div>
                                 </div>
                             </div>
+
+                            <div className="rounded-xl border border-gray-200 p-5 flex gap-4 items-center">
+                                <div className="flex-1">
+                                    <div className="flex items-center justify-between">
+                                        <a href="https://github.com/tylerzchen/iQuHack-2025-IonQ" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-800">Quantum Variational Algorithms for Max-Cut</a>
+                                    </div>
+                                    <div className="text-sm text-gray-600 mt-2 space-y-2">
+                                        <p>Designed a quantum circuit to solve Max-Cut problems with high accuracy. Created Loss Hamiltonians to enforce the constraints of the problem:</p>
+                                        <div className="bg-white-50 p-2">
+                                            <BlockMath math="H = \frac{1}{2}|E| - \frac{1}{2}\sum_{(v, w) \in E}(Z_v Z_w) + \alpha (\sum_{v \in V}\sum_{w \in W} Z_v Z_w)^2 + \beta \sum_{v \in V} (\hat{P}_v^{(-)} + \hat{P}_v^{(+)})" />
+                                        </div>
+                                        <p>where</p>
+                                        <div className="bg-white-50 p-2">
+                                            <BlockMath math="\hat{P}_v^{(\pm)} = \frac{I \pm Z_v}{2}\prod_{i \in N(v)} \frac{I \mp Z_i}{2}" />
+                                        </div>
+                                        <p>I also did this with my roommates. Won 2nd place at MIT iQuHack 2025.</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
