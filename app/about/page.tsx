@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { BlockMath } from 'react-katex';
+import { BlockMath, InlineMath } from 'react-katex';
 
 export default function About() {
     return (
@@ -82,6 +82,38 @@ export default function About() {
 
                     <div>
                         <h2 className="text-2xl font-semibold text-gray-900 text-left">Projects</h2>
+
+                        <div className="mt-4 space-y-4 text-gray-700">
+                            <div className="rounded-xl border border-gray-200 p-5 flex gap-4 items-center">
+                                <div className="flex-1">
+                                    <div className="flex items-center justify-between">
+                                        <a href="https://github.com/tylerzchen/kan_transformer" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-800">Kolmogorov-Arnold Neural Network (KAN) Transformer</a>
+                                    </div>
+                                    <div className="text-sm text-gray-600 mt-2 space-y-2">
+                                        <p>Built a transformer-model replacing traditional feed-forward lawyers by layers inspired by the Kolmogor-Arnold Respresentation Theorem, 
+                                            which states that any multivariate continuous function:
+                                        </p>
+                                        <div className="bg-white-50 p-2">
+                                            <BlockMath math="f(x_1, x_2, ..., x_n): \mathbb{R}^n \to \mathbb{R}" />
+                                        </div>
+                                        <p>can be expressed as:</p>
+                                        <div className="bg-white-50 p-2">
+                                            <BlockMath math="f(x_1, x_2, \ldots, x_n) = \sum_{q=0}^{2n} \phi_q\!\left(\sum_{p=1}^n \psi_{p,q}(x_p)\right)" />
+                                        </div>
+                                        <p>where:</p>
+                                        <ul className="list-disc pl-6 space-y-1">
+                                            <li><InlineMath math="\phi_q : \mathbb{R} \to \mathbb{R}" /> and <InlineMath math="\psi_{p,q} : \mathbb{R} \to \mathbb{R}" /> are continuous functions</li>
+                                            <li><InlineMath math="x_1, x_2, \ldots, x_n" /> are the input variables</li>
+                                            <li><InlineMath math="n" /> is the dimensionality of the input space</li>
+                                        </ul>
+                                        <p>
+                                            Used both rational and taylor polynomials as base functions, and compared results with LSTMs and standard transformers. Results weren&apos;t amazing, but was an amazing learning experience.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div className="mt-4 space-y-4 text-gray-700">
                             <div className="rounded-xl border border-gray-200 p-5 flex gap-4 items-center">
                                 <div className="flex-1">
