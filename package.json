@@ -19,8 +19,8 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-katex": "^3.1.0",
-    "three": "^0.179.1",
-    "rss-parser": "^3.13.0"
+    "rss-parser": "^3.13.0",
+    "three": "^0.179.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -29,7 +29,6 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/react-katex": "^3.0.4",
-    "@types/rss-parser": "^7.0.0",
     "eslint": "^9",
     "eslint-config-next": "15.5.0",
     "tailwindcss": "^4",
