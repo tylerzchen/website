@@ -85,8 +85,8 @@ export default function Home() {
     <div className="min-h-screen w-full relative overflow-x-hidden">
       <div className="w-full flex flex-col items-center">
         <div className="w-full">
-          <main className="max-w-3xl mx-auto px-6 pt-20 md:pt-24">
-            <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900 text-left">Tyler Chen</h1>
+          <main className="page-container">
+            <h1 className="heading-1 mb-6">Tyler Chen</h1>
             {/*
             <Image
               src="/tyler_headshot.jpeg"
@@ -97,11 +97,11 @@ export default function Home() {
               priority
             />
             */}
-            <p className="mt-4 text-base md:text-lg leading-relaxed text-gray-700 text-left">
+            <p className="mt-4 body-text text-left">
               I&apos;m a Physics & CS student at Yale. Previously, I was CTO & Cofounder at Caucus (YC X25) where I tackled automating highly repetitive government workflows related to constituent services and form filing. I&apos;m most interested in 
               building pragmatic, scalable software to maximize positive impact.
             </p>
-            <p className="mt-4 text-base md:text-lg leading-relaxed text-gray-700 text-left">
+            <p className="mt-4 body-text text-left">
               I also play jazz piano and stay active. I love to cook, hike, and spend time with friends (and my dog).
             </p>
             {introFinished && (
@@ -113,7 +113,7 @@ export default function Home() {
                   height={320}
                   priority
                 />
-                <figcaption className="mt-2 text-sm text-gray-600">a photo of my dog Rose</figcaption>
+                <figcaption className="mt-2 meta-text">a photo of my dog Rose</figcaption>
               </figure>
             )}
           </main>
