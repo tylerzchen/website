@@ -11,6 +11,19 @@ interface Book {
 
 const currentlyReading: Book[] = [
   {
+    title: "Annihilation",
+    author: "Jeff VanderMeer",
+    imagePath: "/annihilation.jpg",
+  },
+  {
+    title: "A Mind at Play",
+    author: "Jimmy Soni, Rob Goodman",
+    imagePath: "/mindatplay.jpg",
+  },
+];
+
+const recommendations: Book[] = [
+  {
     title: "The Wolves of K Street",
     author: "Brody Mullins and Luke Mullins",
     imagePath: "/wolvesofkstreet.jpg",
@@ -20,9 +33,6 @@ const currentlyReading: Book[] = [
     author: "Michelle Zauner",
     imagePath: "/hmartphoto.jpg",
   },
-];
-
-const recommendations: Book[] = [
   {
     title: "Scythe",
     author: "Neal Shusterman",
@@ -85,7 +95,7 @@ export default function Bookshelf() {
             Books I&apos;m currently reading and books I love. Always open to recommendations!
           </p>
           <p className="meta-text">
-            Last Updated: November 18th, 2025
+            Last Updated: February 13th, 2026
           </p>
         </div>
       </div>

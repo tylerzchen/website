@@ -63,7 +63,7 @@ export default async function Writing() {
                                 Bookshelf
                             </div>
                             <div className="meta-text mt-1">
-                                Last Updated: November 18th, 2025
+                                Last Updated: February 13th, 2026
                             </div>
                             <p className="body-text mt-2">
                                 Books I&apos;m currently reading and books I love. Always open to recommendations!
