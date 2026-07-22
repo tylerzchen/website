@@ -15,7 +15,6 @@ export default function About() {
                                 <div className="flex-1">
                                     <div className="flex items-center justify-between">
                                         <p>Yale University - BS in Physics and CS</p>
-                                        <p className="meta-text">Expected May 2027</p>
                                     </div>
                                     <p className="body-text-sm mt-2">also part of aepi, quantum computing club, and played rugby freshmen year</p>
                                 </div>
